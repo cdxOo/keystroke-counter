@@ -90,7 +90,7 @@ while (<XINPUT>) {
         my $time = makeTime();
         if ($time != $lastTime) {
             writeData();
-            $count = 0;
+            $count = 1;
             $lastTime = $time;
         }
         else {
