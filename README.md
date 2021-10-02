@@ -25,8 +25,8 @@ requires "xinput".
 
 ```
 
-You probably also want some line like this in your ~/.xinitrc so
-it starts in background as soon as the X11 server is started.
+You might want this in your ~/.xinitrc so it's started 
+background automatcially.
 
 ```bash
 ~/my/path/to/keystroke-counter --log-file ~/.my-log.log &
