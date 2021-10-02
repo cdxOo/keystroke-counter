@@ -9,7 +9,7 @@ $SIG{INT}  = \&onTermination;
 $SIG{TERM} = \&onTermination;
 
 my $interval = 60;
-my $log = './keystroke-tracker.log';
+my $log = './keystroke-counter.log';
 my $keyboard = 'any';
 
 GetOptions(
