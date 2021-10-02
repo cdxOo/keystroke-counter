@@ -14,7 +14,7 @@ my $keyboard = 'any';
 GetOptions(
     'interval=i' => \$interval,
     'log-file=s' => \$log,
-    'keyboard' => \$keyboard
+    'keyboard=s' => \$keyboard
 ) or die($!);
 
 my $count = 0;
@@ -79,7 +79,8 @@ if ($keyboard eq 'any') {
     ));
 }
 else {
-    open(XINPUT, sprintf('xinput test "$s" |', $keyboard));
+    print $keyboard;
+    open(XINPUT, sprintf('xinput test "%s" |', $keyboard));
 }
 
 
