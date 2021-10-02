@@ -80,7 +80,6 @@ if ($keyboard eq 'any') {
     ));
 }
 else {
-    print $keyboard;
     open(XINPUT, sprintf('xinput test "%s" |', $keyboard));
 }
 
