@@ -25,12 +25,11 @@ requires "xinput".
 
 ```
 
-You probably also want this in your .xinitrc so that it starts
-as soon as the X11 server is started
+You probably also want some line like this in your ~/.xinitrc so
+it starts in background as soon as the X11 server is started.
 
 ```bash
-# somehere in your ~/.xinitrc
-~/my/path/to/keystroke-counter --log-file ~/.mylog &
+~/my/path/to/keystroke-counter --log-file ~/.my-log.log &
 ```
 
 ## Output
