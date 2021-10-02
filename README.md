@@ -7,8 +7,8 @@ requires "xinput".
 
 ```bash
 ./keystroke-counter \
-    --interval 60
-    --log-file ./keystroke-counter.log
+    --interval 60 \
+    --log-file ./keystroke-counter.log \
     --keyboard any
 # interval:
 #     time interval for grouping the keystrokes in seconds
