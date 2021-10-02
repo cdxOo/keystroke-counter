@@ -1,4 +1,5 @@
 use strict;
+use warnings;
 use POSIX qw(floor);
 use Getopt::Long;
 
@@ -8,7 +9,7 @@ $SIG{TERM} = \&onTermination;
 
 my $interval = 60;
 my $log = './keystroke-tracker.log';
-my $keyboard = 'AT Translated Set 2 keyboard';
+my $keyboard = 'any';
 
 GetOptions(
     'interval=i' => \$interval,
@@ -19,7 +20,20 @@ GetOptions(
 my $count = 0;
 my $lastTime = makeTime();
 
-sub makeTime () {
+sub findAllKeyboardIds {
+    open(LIST, 'xinput list |');
+    my @ids = ();
+    while (<LIST>) {
+        if (/id=(\d+)(?:.*slave\s*keyboard)/) {
+            push(@ids, $1);
+        }
+    }
+    close(LIST);
+
+    return @ids;
+}
+
+sub makeTime {
     return floor(time() / $interval);
 }
 
@@ -52,10 +66,22 @@ sub writeData () {
 sub onTermination {
     writeData();
     writeFooter();
+    close(XINPUT);
     die("\n");
 }
 
-open(XINPUT, sprintf('xinput test "%s" |', $keyboard));
+my $args = undef;
+if ($keyboard eq 'any') {
+    my @ids = findAllKeyboardIds();
+    open(XINPUT, sprintf(
+        'echo %s | xargs -P0 -n1 xinput test |',
+        join(' ', @ids)
+    ));
+}
+else {
+    open(XINPUT, sprintf('xinput test "$s" |', $keyboard));
+}
+
 
 writeHeader();
 while (<XINPUT>) {
