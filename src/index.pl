@@ -32,11 +32,16 @@ sub writeToDisk {
 }
 
 sub writeHeader () {
-    writeToDisk('# starting log @ ' . time());
+    writeToDisk(sprintf(
+        '# start %d (interval=%d; keyboard="%s")',
+        time(), $interval, $keyboard
+    ));
 }
 
 sub writeFooter () {
-    writeToDisk('# stopping log @ ' . time());
+    writeToDisk(sprintf(
+        '# stop %d', time()
+    ));
 }
 
 sub writeData () {
