@@ -24,3 +24,25 @@ requires "xinput".
 #     optional; default: "any"
 
 ```
+
+You probably also want this in your .xinitrc so that it starts
+as soon as the X11 server is started
+
+```bash
+# somehere in your ~/.xinitrc
+~/my/path/to/keystroke-counter --log-file ~/.mylog &
+```
+
+## Output
+
+```bash
+# start 1633142208 (interval=60; keyboard="AT Translated Set 2 keyboard")
+1633142160 18
+1633142220 73
+1633142280 124
+# stop 1633142335
+```
+
+First Column is the unix timestamp of the intervals start; second line
+is the amount of keystrokes in that interval. Header line also logs
+interval and keyboard arguments in case someone needs that.
